@@ -3,16 +3,16 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Description</th>
+              <th class="col-md-1">Id</th>
+              <th class="col-md-3">Name</th>
+              <th class="col-md-8">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr (click)="onClick(character)" *ngFor="let character of characters">
-              <td>{{ character.id }}</td>
-              <td>{{ character.name }}</td>
-              <td>{{ character.description }}</td>
+              <td class="col-md-1">{{ character.id }}</td>
+              <td class="col-md-3">{{ character.name }}</td>
+              <td class="col-md-8">{{ character.description }}</td>
             </tr>
           </tbody>
         </table>

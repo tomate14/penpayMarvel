@@ -4,6 +4,7 @@ import { CharacterService } from '../../services/character.service';
 import { PopupCharacterService } from '../../services/popup/popup-character.service';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule, NgxSpinnerService  } from 'ngx-spinner';
+import { CharacterResult, MarvelData } from '../../models/marvel-character.model';
 
 @Component({
   selector: 'app-characters-table',
@@ -23,7 +24,7 @@ export class CharactersTableComponent implements OnInit {
   }
   ngOnInit(): void {
     this.spinner.show();
-    this.characterService.getCharacters(0).subscribe((res:any)=> {
+    this.characterService.getCharacters(0).subscribe((res:MarvelData)=> {
       this.characters = res.results;
       this.limit = res.limit;
       this.total = res.total;
@@ -35,7 +36,7 @@ export class CharactersTableComponent implements OnInit {
   }
 
   onClick(character:any): void {
-    this.characterService.getCharacter(character.id).subscribe((marvelCharacter:any)=> {
+    this.characterService.getCharacter(character.id).subscribe((marvelCharacter:CharacterResult)=> {
       this.characterModal.openCharacter(marvelCharacter);
     })    
   }
@@ -43,7 +44,7 @@ export class CharactersTableComponent implements OnInit {
   fetchCharacters(): void {
     this.spinner.show();
     const offset = (this.page - 1) * this.limit;
-    this.characterService.getCharacters(offset).subscribe((res:any)=> {
+    this.characterService.getCharacters(offset).subscribe((res:MarvelData)=> {
       this.characters = res.results;
       this.limit = res.limit;
       this.total = res.total;

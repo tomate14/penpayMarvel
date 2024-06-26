@@ -27,7 +27,7 @@ public class MarvelController {
     private final static int PAGE_LIMIT = 20;
     @GetMapping()
     public MarvelData getCharacters(@RequestParam(defaultValue = "0") int offset) {
-        int pageNumber = offset / PAGE_LIMIT;
+        int pageNumber = (offset / PAGE_LIMIT) + 1;
         String service = "getCharacters Page "+pageNumber;
 
         historyService.save(service);
