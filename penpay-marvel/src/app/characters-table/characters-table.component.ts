@@ -29,7 +29,9 @@ export class CharactersTableComponent implements OnInit {
   }
 
   onClick(character:any): void {
-    this.characterModal.openCharacter(character);
+    this.characterService.getCharacter(character.id).subscribe((marvelCharacter:any)=> {
+      this.characterModal.openCharacter(marvelCharacter);
+    })    
   }
 
   fetchCharacters(): void {

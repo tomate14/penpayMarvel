@@ -1,1 +1,20 @@
-<p>history-table works!</p>
+<div class="container">
+    <div class="row">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Description</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of history">
+              <td>{{ row.id }}</td>
+              <td>{{ row.url }}</td>
+              <td>{{ row.date | date: 'HH:mm'}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>

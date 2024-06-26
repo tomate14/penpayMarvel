@@ -10,7 +10,10 @@ export class CharacterService {
     constructor(private httpClient: HttpClient) { }
 
     public getCharacters(offset:number): Observable<any> {
-        return this.httpClient.get<any>(`http://localhost:8080/marvel/characters?offset=${offset}`);
+        return this.httpClient.get<any>(`http://localhost:8080/marvel/character?offset=${offset}`);
+    }
+    public getCharacter(idCharacter:number): Observable<any> {
+        return this.httpClient.get<any>(`http://localhost:8080/marvel/character/${idCharacter}`);
     }
 
 }  
