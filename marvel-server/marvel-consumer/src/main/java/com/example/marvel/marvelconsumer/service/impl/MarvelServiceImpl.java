@@ -1,6 +1,7 @@
 package com.example.marvel.marvelconsumer.service.impl;
 
 import com.example.marvel.marvelconsumer.dto.MarvelCharacter;
+import com.example.marvel.marvelconsumer.dto.MarvelData;
 import com.example.marvel.marvelconsumer.responses.MarvelApiResponse;
 import com.example.marvel.marvelconsumer.service.MarvelService;
 import com.example.marvel.marvelconsumer.utils.Md5Hash;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -23,13 +25,14 @@ public class MarvelServiceImpl implements MarvelService {
     @Value("${marvel.api.baseUrl}")
     private String baseUrl;
 
-    public MarvelApiResponse getMarvelCharacters(int offset) {
+    public MarvelData getMarvelCharacters(int offset) {
         String timestamp = "1";
         String hash = generateHash(timestamp);
 
         String url = String.format("%s?ts=%s&apikey=%s&hash=%s&offset=%d", baseUrl, timestamp, publicKey, hash, offset);
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(url, MarvelApiResponse.class);
+        MarvelApiResponse apiResponse = restTemplate.getForObject(url, MarvelApiResponse.class);
+        return Objects.requireNonNull(apiResponse).getData();
     };
 
     public MarvelCharacter getMarvelCharacter(int idCharacter) throws Exception {

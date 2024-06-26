@@ -1,7 +1,7 @@
 package com.example.marvel.marvelserver.controller;
 
 import com.example.marvel.marvelconsumer.dto.MarvelCharacter;
-import com.example.marvel.marvelconsumer.responses.MarvelApiResponse;
+import com.example.marvel.marvelconsumer.dto.MarvelData;
 import com.example.marvel.marvelconsumer.service.MarvelService;
 import com.example.marvel.marvelserver.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/marvel")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MarvelController {
 
 
@@ -16,7 +17,7 @@ public class MarvelController {
     private MarvelService consumerService;
 
     @GetMapping("/characters")
-    public MarvelApiResponse getCharacters(@RequestParam(defaultValue = "0") int offset) {
+    public MarvelData getCharacters(@RequestParam(defaultValue = "0") int offset) {
         return consumerService.getMarvelCharacters(offset);
     }
 
