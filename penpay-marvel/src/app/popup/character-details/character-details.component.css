@@ -1,0 +1,8 @@
+.modal-header {
+    justify-content: space-between;
+}
+
+button.close {
+    border: hidden;
+    background: white;
+}

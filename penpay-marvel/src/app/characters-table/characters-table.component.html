@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr (click)="onClick(character)" *ngFor="let character of characters">
+              <td>{{ character.id }}</td>
+              <td>{{ character.name }}</td>
+              <td>{{ character.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <ngb-pagination 
+        [collectionSize]="total" 
+        [(page)]="page" 
+        [pageSize]="limit" 
+        [maxSize]="5" 
+        [rotate]="true" 
+        [boundaryLinks]="true" 
+        (pageChange)="onPageChange($event)"></ngb-pagination>
+      </div>
+  </div>
